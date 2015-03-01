@@ -6,7 +6,7 @@ go.crypto/ssh session.
 
 ## func Copy
 ``` go
-func Copy(size int64, mode os.FileMode, fileName string, contents io.Reader, destination string, session *ssh.Session) error
+func Copy(size int64, mode os.FileMode, fileName string, contents io.Reader, destinationPath string, session *ssh.Session) error
 ```
 
 ## func CopyPath
