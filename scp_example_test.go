@@ -27,8 +27,7 @@ func ExampleCopyPath() {
 
 	agent, err := getAgent()
 	if err != nil {
-		log.Println("Failed to connect to SSH_AUTH_SOCK:", err)
-		os.Exit(1)
+		log.Fatalln("Failed to connect to SSH_AUTH_SOCK:", err)
 	}
 
 	client, err := ssh.Dial("tcp", "127.0.0.1:22", &ssh.ClientConfig{
@@ -38,14 +37,12 @@ func ExampleCopyPath() {
 		},
 	})
 	if err != nil {
-		log.Println("Failed to dial:", err)
-		os.Exit(1)
+		log.Fatalln("Failed to dial:", err)
 	}
 
 	session, err := client.NewSession()
 	if err != nil {
-		log.Println("Failed to create session: " + err.Error())
-		os.Exit(1)
+		log.Fatalln("Failed to create session: " + err.Error())
 	}
 
 	dest := f.Name() + "-copy"
