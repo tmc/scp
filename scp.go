@@ -30,9 +30,13 @@ func CopyPath(filePath, destinationPath string, session *ssh.Session) error {
 
 func copy(size int64, mode os.FileMode, fileName string, contents io.Reader, destination string, session *ssh.Session) error {
 	defer session.Close()
+	w, err := session.StdinPipe()
+	if err != nil {
+		return err
+	}
+	defer w.Close()
+
 	go func() {
-		w, _ := session.StdinPipe()
-		defer w.Close()
 		fmt.Fprintf(w, "C%#o %d %s\n", mode, size, fileName)
 		io.Copy(w, contents)
 		fmt.Fprint(w, "\x00")
