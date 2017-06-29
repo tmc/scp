@@ -38,6 +38,7 @@ func copy(size int64, mode os.FileMode, fileName string, contents io.Reader, des
 
 	cmd := fmt.Sprintf("scp -t %s", destination)
 	if err := session.Start(cmd); err != nil {
+		w.Close()
 		return err
 	}
 
