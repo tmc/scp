@@ -35,6 +35,7 @@ func ExampleCopyPath() {
 		Auth: []ssh.AuthMethod{
 			ssh.PublicKeysCallback(agent.Signers),
 		},
+		HostKeyCallback: ssh.InsecureIgnoreHostKey(), // FIXME: please be more secure in checking host keys
 	})
 	if err != nil {
 		log.Fatalln("Failed to dial:", err)

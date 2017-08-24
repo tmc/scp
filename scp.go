@@ -8,6 +8,8 @@ import (
 	"os"
 	"path"
 
+	shellquote "github.com/kballard/go-shellquote"
+
 	"golang.org/x/crypto/ssh"
 )
 
@@ -36,7 +38,7 @@ func copy(size int64, mode os.FileMode, fileName string, contents io.Reader, des
 		return err
 	}
 
-	cmd := fmt.Sprintf("scp -t %s", destination)
+	cmd := shellquote.Join("scp", "-t", destination)
 	if err := session.Start(cmd); err != nil {
 		w.Close()
 		return err
