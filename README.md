@@ -13,3 +13,13 @@ func Copy(size int64, mode os.FileMode, fileName string, contents io.Reader, des
 ``` go
 func CopyPath(filePath, destinationPath string, session *ssh.Session) error
 ```
+
+## func CopyLocalFileToRemotePath
+``` go
+func CopyLocalFileToRemotePath(localFile, remotePath string, client *ssh.Client) error
+```
+
+## func CopyRemoteFileToLocalPath
+``` go
+func CopyRemoteFileToLocalPath(remoteFile, localPath string, client *ssh.Client) error
+```
